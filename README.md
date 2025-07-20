@@ -53,6 +53,10 @@ API: Flask com rota /predict
 - Entrada: JSON com atributos do candidato e da vaga.
 - Saída: Probabilidade de aprovação.
 
+API: Flask com rota /drift
+  - Entrada: -
+  - Saída: Resultado analise do model drift
+
 Dockerfile: Empacotamento da API + dependências.
 
 Deploy: Local
@@ -61,6 +65,7 @@ Deploy: Local
 
 Testes unitários:
 - Predição.
+- Model Drift
 - Endpoint da API.
 
 Testes de integração:
@@ -85,6 +90,8 @@ Testes de integração:
 ├──── data/ # Dados para treinamento do modelo
 ├──── saved_models/ # Modelos e scaler salvos
 ├──── decision-recruitment-process-model-training.ipynb # Notebook para treino e deploy do modelo
+├── tests/
+├──── test_app.py 
 ├── requirements.txt
 ├── Dockerfile
 ├── start.sh

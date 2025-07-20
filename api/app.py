@@ -59,7 +59,13 @@ else:
 
 def log_input_features(features):
     """Salva as features de entrada para monitoramento de drift."""
-    df = pd.DataFrame([features])
+    df = pd.DataFrame([features], columns=[
+        "match_score",
+        "nivel_profissional_vaga_enc",
+        "nivel_ingles_vaga_enc",
+        "nivel_ingles_enc",
+        "nivel_academico_enc"
+    ])
     file_exists = os.path.isfile(LOGGED_FEATURES_PATH)
     df.to_csv(LOGGED_FEATURES_PATH, mode='a', header=not file_exists, index=False)
     logging.info(f"Features de entrada logadas para drift: {features}")
@@ -70,30 +76,44 @@ def check_drift():
         return {"drift": False, "details": "Sem dados suficientes"}
     logged = pd.read_csv(LOGGED_FEATURES_PATH)
     drift_results = {}
+    drift_found = False
     with mlflow.start_run(run_name="drift_monitoring", nested=True):
         for col in train_features.columns:
             if col in logged.columns:
                 stat, p_value = ks_2samp(train_features[col], logged[col])
-                drift = p_value < 0.05
+                drift = bool(p_value < 0.05) # Considera drift se p < 0.05
                 drift_results[col] = {
                     "ks_stat": float(stat),
                     "p_value": float(p_value),
                     "drift": drift
                 }
-                # Loga as métricas de drift no MLflow
                 mlflow.log_metric(f"{col}_ks_stat", float(stat))
                 mlflow.log_metric(f"{col}_p_value", float(p_value))
                 mlflow.log_metric(f"{col}_drift", int(drift))
                 if drift:
+                    drift_found = True
                     logging.warning(f"Drift detectado na feature '{col}': p={p_value:.4f}")
-    return drift_results
+                else:
+                    logging.info(f"Sem drift na feature '{col}': p={p_value:.4f}")
+    if not drift_found:
+        return {
+            "drift": False,
+            "details": "Nenhum drift encontrado nas features monitoradas.",
+            "features": drift_results
+        }
+    else:
+        return {
+            "drift": True,
+            "details": "Drift detectado em pelo menos uma feature.",
+            "features": drift_results
+        }
 
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
         logging.info("Recebida requisição de predição")
         data = request.get_json()
-        # Espera: job_description, cv_text, e os outros campos utilizados na feature
+        # Espera: job_description, cv_text, e os outros campos utilizados
         if not data or 'job_description' not in data or 'cv_text' not in data:
             return jsonify({'error': 'JSON deve conter "job_description" e "cv_text".'}), 400
 
