@@ -11,6 +11,7 @@ COPY api/ ./api/
 COPY notebooks/ ./notebooks/
 COPY start.sh .
 COPY mlruns/ ./mlruns/
+COPY tests/ ./tests/
 # Dá permissão de execução ao script de inicialização
 RUN chmod +x start.sh
 

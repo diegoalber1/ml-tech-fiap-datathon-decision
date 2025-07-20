@@ -113,31 +113,25 @@ def predict():
     try:
         logging.info("Recebida requisição de predição")
         data = request.get_json()
-        # Espera: job_description, cv_text, e os outros campos utilizados
         if not data or 'job_description' not in data or 'cv_text' not in data:
             return jsonify({'error': 'JSON deve conter "job_description" e "cv_text".'}), 400
 
-        # Calcula o match_score
         desc = data['job_description'] or ""
         cv = data['cv_text'] or ""
         desc_vec = tfidf.transform([desc])
         cv_vec = tfidf.transform([cv])
         match_score = cosine_similarity(desc_vec, cv_vec)[0][0]
 
-       
-        # Recebe os valores como string
         nivel_profissional_vaga = data.get('nivel_profissional_vaga', '')
         nivel_ingles_vaga = data.get('nivel_ingles_vaga', '')
         nivel_ingles = data.get('nivel_ingles', '')
         nivel_academico = data.get('nivel_academico', '')
 
-        # Usa os encoders treinados
         nivel_profissional_vaga_enc = le1.transform([nivel_profissional_vaga])[0] if nivel_profissional_vaga in le1.classes_ else 0
         nivel_ingles_vaga_enc = le2.transform([nivel_ingles_vaga])[0] if nivel_ingles_vaga in le2.classes_ else 0
         nivel_ingles_enc = le3.transform([nivel_ingles])[0] if nivel_ingles in le3.classes_ else 0
         nivel_academico_enc = le4.transform([nivel_academico])[0] if nivel_academico in le4.classes_ else 0
 
-        # Monta o vetor de features para o modelo
         features = [
             match_score,
             nivel_profissional_vaga_enc,
@@ -157,6 +151,8 @@ def predict():
             mlflow.log_metric("prediction", float(pred))
             if prob is not None:
                 mlflow.log_metric("prob_contratado", float(prob))
+            # Loga o payload de entrada
+            mlflow.log_dict(data, "payload.json")
 
         response = {'prediction': int(pred), 'match_score': float(match_score)}
         if prob is not None:
