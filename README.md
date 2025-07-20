@@ -2,6 +2,8 @@
 
 AI Recruiter: Otimizando o Match entre Candidatos e Vagas com Machine Learning.
 
+Este repositório foi desenvolvido como parte do Datathon da Pós-Graduação em Engenharia de Machine Learning da FIAP, com objetivos acadêmicos e educacionais.
+
 ---
 
 ## 🎯 Problema
