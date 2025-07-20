@@ -205,3 +205,6 @@ notebooks/data/
 .pitch
 pitch
 flask_monitoringdashboard.db
+api/logged_features.csv
+notebooks/saved_models/train_features.csv
+flask_monitoringdashboard.db

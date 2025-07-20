@@ -10,12 +10,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY api/ ./api/
 COPY notebooks/ ./notebooks/
 COPY start.sh .
-
+COPY mlruns/ ./mlruns/
 # Dá permissão de execução ao script de inicialização
 RUN chmod +x start.sh
 
 # Expõe as portas do Flask e do MLflow
-EXPOSE 5000 5001
+EXPOSE 5000 5001 5002
 
 # Comando de inicialização
 CMD ["./start.sh"]
