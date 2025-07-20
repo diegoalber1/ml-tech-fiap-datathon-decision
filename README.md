@@ -44,11 +44,10 @@ Feature Engineering:
 ### 🤖 2. Modelagem
 Algoritmo supervisionado: Random Forest.
 
-- Target: candidato_aprovado (1) ou não aprovado (0).
+- Target: candidato_aprovado (1) ou não aprovado (0)  {prediction}
+          probabilidade de contracao                  {prob_contratado}
 
-Clusterização: KMeans para segmentar perfis ideais.
-
-Validação: Cross-validation + métricas de precisão, recall e F1-score.
+Validação: métricas de precisão, recall e F1-score.
 
 Serialização: pickle.
 
@@ -56,11 +55,11 @@ Serialização: pickle.
 
 API: Flask com rota /predict
 - Entrada: JSON com atributos do candidato.
-- Saída: Probabilidade de aprovação + cluster sugerido.
+- Saída: Probabilidade de aprovação.
 
 Dockerfile: Empacotamento da API + dependências.
 
-Deploy: Local ou Heroku 
+Deploy: Local
 
 ### 🧪 4. Testes
 
@@ -149,19 +148,28 @@ http://localhost:5001
 ```bash
 curl -X POST http://localhost:5000/predict \
      -H "Content-Type: application/json" \
-     -d '{"data": [100.0, 101.2, ..., 110.4]}'
+     -d '{
+               "data": [0.02681892, 11.0, 4.0, 0.0, 0.0],
+               "feature_names": [
+               "match_score",
+               "nivel_profissional_vaga_enc",
+               "nivel_ingles_vaga_enc",
+               "nivel_ingles_enc",
+               "nivel_academico_enc"
+               ]
+          }
 ```
 ## 🐳 Deploy com Docker
 
 ### 1. Build da imagem
 
 ```bash
-docker build -t lstm-stock-api .
+docker build -t fiap-ai-recruiter .
 ```
 ### 2. Run da API via Docker
 
 ```bash
-docker run -it --rm -p 5000:5000 -p 5001:5001 lstm-stock-api
+docker run -it --rm -p 5000:5000 -p 5001:5001 fiap-ai-recruiter
 ```
 
 
