@@ -1,0 +1,10 @@
+artifact_location: file:///home/alberone/projects/fiap/ml-engineering/ml-tech-fiap-datathon-decision/notebooks/mlruns/857301660355592148/models/m-453177254e19421e880f5002a09f1ffa/artifacts
+creation_timestamp: 1752973791252
+experiment_id: '857301660355592148'
+last_updated_timestamp: 1752973794053
+model_id: m-453177254e19421e880f5002a09f1ffa
+model_type: null
+name: random_forest_model
+source_run_id: c38751dceeca4a9abd44475e68e9b6f2
+status: 2
+status_message: null

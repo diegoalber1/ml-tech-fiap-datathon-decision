@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alberone/projects/fiap/ml-engineering/ml-tech-fiap-datathon-decision/mlruns/0/d1537d80e2784cc3b6e64521014d3243/artifacts
+end_time: 1753045791196
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d1537d80e2784cc3b6e64521014d3243
+run_name: inference
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753045791179
+status: 3
+tags: []
+user_id: alberone

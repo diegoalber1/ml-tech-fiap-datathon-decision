@@ -1,0 +1,37 @@
+artifact_path: file:///home/alberone/projects/fiap/ml-engineering/ml-tech-fiap-datathon-decision/notebooks/mlruns/857301660355592148/models/m-f99d9a70591149f881d58a40b6b60153/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.4.2
+is_signature_from_type_hint: false
+mlflow_version: 3.1.1
+model_id: m-f99d9a70591149f881d58a40b6b60153
+model_size_bytes: 102330810
+model_uuid: m-f99d9a70591149f881d58a40b6b60153
+prompts: null
+run_id: 9760d5cddb104444a80f2b0cd2502111
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "match_score", "required": true}, {"type":
+    "long", "name": "nivel_profissional_vaga_enc", "required": true}, {"type": "long",
+    "name": "nivel_ingles_vaga_enc", "required": true}, {"type": "long", "name": "nivel_ingles_enc",
+    "required": true}, {"type": "long", "name": "nivel_academico_enc", "required":
+    true}]'
+  outputs: '[{"type": "long", "required": true}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-07-20 01:21:01.152113'

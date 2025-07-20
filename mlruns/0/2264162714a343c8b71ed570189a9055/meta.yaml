@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alberone/projects/fiap/ml-engineering/ml-tech-fiap-datathon-decision/mlruns/0/2264162714a343c8b71ed570189a9055/artifacts
+end_time: 1753052220567
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2264162714a343c8b71ed570189a9055
+run_name: drift_monitoring
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753052220446
+status: 3
+tags: []
+user_id: alberone

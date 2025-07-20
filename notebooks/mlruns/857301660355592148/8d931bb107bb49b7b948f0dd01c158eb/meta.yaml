@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alberone/projects/fiap/ml-engineering/ml-tech-fiap-datathon-decision/notebooks/mlruns/857301660355592148/8d931bb107bb49b7b948f0dd01c158eb/artifacts
+end_time: 1752973467986
+entry_point_name: ''
+experiment_id: '857301660355592148'
+lifecycle_stage: active
+run_id: 8d931bb107bb49b7b948f0dd01c158eb
+run_name: RandomForest_MatchScore
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1752973458625
+status: 3
+tags: []
+user_id: alberone

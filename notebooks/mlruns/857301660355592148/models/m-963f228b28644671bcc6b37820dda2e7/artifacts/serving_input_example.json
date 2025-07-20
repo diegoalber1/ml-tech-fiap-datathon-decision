@@ -1,0 +1,27 @@
+{
+  "dataframe_split": {
+    "columns": [
+      "match_score",
+      "nivel_profissional_vaga_enc",
+      "nivel_ingles_vaga_enc",
+      "nivel_ingles_enc",
+      "nivel_academico_enc"
+    ],
+    "data": [
+      [
+        0.33902298214164656,
+        9,
+        4,
+        0,
+        0
+      ],
+      [
+        0.24699761986990498,
+        9,
+        0,
+        0,
+        0
+      ]
+    ]
+  }
+}
